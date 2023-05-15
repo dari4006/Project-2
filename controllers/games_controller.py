@@ -16,8 +16,8 @@ def create():
   return redirect('/')
 
 def edit(id):
-  food = get_games(id)
-  return render_template('games/edit.html', food=food)
+  game = get_games(id)
+  return render_template('games/edit.html', game=game)
 
 def update(id):
   name = request.form.get('name')
