@@ -18,3 +18,11 @@ CREATE TABLE users(
   last_name TEXT,
   email TEXT
 );
+
+ALTER TABLE users ADD COLUMN password_digest TEXT;
+
+CREATE TABLE likes(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER,
+  food_id INTEGER
+);

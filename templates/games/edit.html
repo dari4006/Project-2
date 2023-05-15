@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Edit game</h1>
+<form action="/games/{{ game['id'] }}" method="POST">
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{ game['name'] }}">
+
+  <label for="">Image URL:</label>
+  <input type="text" name="image_url" value="{{ game['image_url'] }}">
+
+  <button>Update game</button>
+</form>
+{% endblock %}

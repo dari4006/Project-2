@@ -4,27 +4,19 @@ from flask import Flask, redirect, request
 from flask import render_template
 import os
 from db.db import sql
+from routes.games_routes import games_routes
+from routes.users_routes import users_routes
+from routes.sessions_routes import sessions_routes
+
+SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "test key")
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = SECRET_KEY
+
+app.register_blueprint(games_routes, url_prefix='/games')
+app.register_blueprint(users_routes, url_prefix='/users')
+app.register_blueprint(sessions_routes, url_prefix='/sessions')
 
 @app.route('/')
 def index():
-  return render_template('index.html')
-
-@app.route('/users/new')
-def signup():
-  return render_template('/users/new.html')
-
-@app.route('/users', methods=["POST"])
-def users_create():
-  first_name = request.form.get("first_name")
-  last_name = request.form.get("last_name")
-  email = request.form.get("email")
-
-  sql('INSERT INTO users(first_name, last_name, email) VALUES(%s, %s, %s) RETURNING *', [first_name, last_name, email])
-  return redirect('/')
-
-
-@app.route('/sessions/new')
-def login():
-  return render_template('/sessions/new.html')
+  return redirect('/games')

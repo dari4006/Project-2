@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Video Game Forum Application</h1>
+
+{% if current_user %}
+<h3>Welcome to Test Template {{ current_user['first_name'] }}</h3>
+
+<section>
+    <h1>Test</h1>
+</section>
+
+<section class="controls">
+    <form action="/sessions/delete" method="POST">
+        <button>Log Out</button>
+    </form>
+
+    <a href="/games/new">Add a new game</a>
+</section>
+
+<section class="games">
+    {% for game in games: %}
+    <section class="games">
+      <header>
+        <h2>{{ game['name'] }}</h2>
+  
+        <section class="controls">
+          <a href="/games/{{ game['id'] }}/edit">Edit</a>
+  
+          <form action="/games/{{ game['id'] }}/delete" method="POST">
+            <button>Delete</button>
+          </form>
+  
+          <form action="/games/{{ game['id'] }}/likes" method="POST">
+            <button>Like</button>
+          </form>
+        </section>
+      </header>
+  
+      <img src="{{ game['image_url'] }}" alt="">
+    </section>
+    {% endfor %}
+  </section>
+{% else %}
+<a href="/users/new">Sign up</a>
+<a href="/sessions/new">Log in</a>
+{% endif %}
+
+{% endblock %}
