@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session
-from models.games import all_games, get_games, create_game, update_game, delete_game, like_game
+from models.games import all_games, get_games, create_game, update_game, delete_game, like_game, create_newcomment
 from services.session_info import current_user
 
 def index():
@@ -31,4 +31,9 @@ def delete(id):
 
 def like(id):
   like_game(id, session['user_id'])
+  return redirect('/')
+
+def create_comment(id):
+  comment = request.form.get('comments')
+  create_newcomment(id, session['user_id'], comment)
   return redirect('/')

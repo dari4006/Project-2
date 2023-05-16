@@ -18,3 +18,6 @@ def delete_game(id):
 
 def like_game(game_id, user_id):
   sql("INSERT INTO likes(user_id, game_id) VALUES(%s, %s) RETURNING *", [user_id, game_id])
+
+def create_newcomment(id, user_id, comment):
+  sql('INSERT INTO comments(id, user_id, comment) VALUES(%s, %s, %s) RETURNING *', [id, user_id, comment])
