@@ -34,10 +34,15 @@
           <form action="/games/{{ game['id'] }}/likes" method="POST">
             <button>Like</button>
           </form>
+
+          <form action="/games/{{ game['id'] }}/comments" method="POST">
+            <input type="text">
+          </form>
         </section>
       </header>
   
       <img src="{{ game['image_url'] }}" alt="">
+      <ul class="comments"></ul>
     </section>
     {% endfor %}
   </section>

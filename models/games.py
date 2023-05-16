@@ -16,5 +16,5 @@ def update_game(id, name, image_url):
 def delete_game(id):
   sql('DELETE FROM games WHERE id=%s RETURNING *', [id])
 
-def like_game(food_id, user_id):
-  sql("INSERT INTO likes(user_id, food_id) VALUES(%s, %s) RETURNING *", [user_id, food_id])
+def like_game(game_id, user_id):
+  sql("INSERT INTO likes(user_id, game_id) VALUES(%s, %s) RETURNING *", [user_id, game_id])

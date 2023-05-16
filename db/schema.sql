@@ -24,5 +24,11 @@ ALTER TABLE users ADD COLUMN password_digest TEXT;
 CREATE TABLE likes(
   id SERIAL PRIMARY KEY,
   user_id INTEGER,
-  food_id INTEGER
+  game_id INTEGER
+);
+
+CREATE TABLE comments(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER,
+  comment TEXT
 );
