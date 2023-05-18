@@ -5,9 +5,26 @@
 
 {% if current_user %}
 <h3>Welcome "{{ current_user['first_name'] }}" to the offical Games Forum!</h3>
+<style>
+  .games {
+    background-color: green;
+  }
+  .secondhead {
+    background-color: red;
+  }
+  .controls {
+    background-color: blue
+  }
+</style>
 
-<section>
-    <h1>Test</h1>
+
+<section class="listmenu">
+  <ul>
+    <li><a href="/"></a>Super Mario Bros</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
 </section>
 
 <section class="controls">
@@ -34,17 +51,19 @@
           <form action="/games/{{ game['id'] }}/likes" method="POST">
             <button>Like</button>
           </form>
-
-          <form action="/games/{{ game['id'] }}/comments" method="POST">
-            <input placeholder="add a comment to the game..." name="comments" type="text">
-          </form>
-          {% for comment in comments %}
-          {{ create_comment['comment'] }}
-          {% endfor %}
         </section>
       </header>
-  
-      <img src="{{ game['image_url'] }}" alt="">
+      <form action="/games/{{ game['id'] }}/comments" method="POST">
+        <input placeholder="add a comment to the game..." name="comments" type="text">
+        <button>Comment</button>
+      </form>
+      <img class="pics" src="{{ game['image_url'] }}" alt="">
+      <section class="comments">
+      <h2>COMMENTS:</h2>
+        {% for comment in game['comments'] %}
+        <p>{{ comment }}</p>
+      {% endfor %}
+      </section>
     </section>
     {% endfor %}
   </section>

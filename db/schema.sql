@@ -29,6 +29,7 @@ CREATE TABLE likes(
 
 CREATE TABLE comments(
   id SERIAL PRIMARY KEY,
+  game_id INTEGER,
   user_id INTEGER,
   comment TEXT
 );

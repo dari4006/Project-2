@@ -17,7 +17,10 @@ def delete_game(id):
   sql('DELETE FROM games WHERE id=%s RETURNING *', [id])
 
 def like_game(game_id, user_id):
-  sql("INSERT INTO likes(user_id, game_id) VALUES(%s, %s) RETURNING *", [user_id, game_id])
+  sql("INSERT INTO likes(game_id, user_id) VALUES(%s, %s) RETURNING *", [game_id, user_id])
 
-def create_newcomment(id, user_id, comment):
-  sql('INSERT INTO comments(id, user_id, comment) VALUES(%s, %s, %s) RETURNING *', [id, user_id, comment])
+def create_comment(game_id, user_id, comment):
+  sql('INSERT INTO comments(game_id, user_id, comment) VALUES(%s, %s, %s) RETURNING *', [game_id, user_id, comment])
+
+def comments_by_game(game_id):
+  return sql(f'SELECT comment FROM comments WHERE game_id = {game_id}')
