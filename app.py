@@ -7,6 +7,9 @@ from db.db import sql
 from routes.games_routes import games_routes
 from routes.users_routes import users_routes
 from routes.sessions_routes import sessions_routes
+import requests
+requests.get(f"http://omdbapi.com?apikey={os.environ.get('OMDB_API_KEY')}&t=jaws").json()
+
 
 SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "test key")
 
